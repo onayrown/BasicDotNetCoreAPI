@@ -8,12 +8,12 @@ namespace IGTManagementTicket.Api.Services
 {
     public static class TicketsService
     {
-        public static Items GetTicketCount(int jobId, string environment)
+        public static TicketsInfo GetTicketCount(int jobId, string environment)
         {
-            var items = new Items()
+            var items = new TicketsInfo()
             {
-                TicketCount = 5,
-                BookCount = 3,
+                Tickets = 5,
+                Books = 3,
                 ErrorMessage = null
             };
 
@@ -29,8 +29,7 @@ namespace IGTManagementTicket.Api.Services
         {
             var statusDB = new StatusDB()
             {
-                JobId = jobId,
-                Environment = environment
+                ErrorMessage = null
             };
             
             return statusDB;
@@ -40,8 +39,7 @@ namespace IGTManagementTicket.Api.Services
         {
             var statusDB = new StatusDB()
             {
-                JobId = jobId,
-                Environment = environment
+                ErrorMessage = null
             };
 
             return statusDB;
@@ -51,8 +49,7 @@ namespace IGTManagementTicket.Api.Services
         {
             var statusDB = new StatusDB()
             {
-                JobId = jobId,
-                Environment = environment.ToUpper()
+                ErrorMessage = null
             };
 
             if (jobId == 9753 && environment.ToUpper().Equals("STAG"))

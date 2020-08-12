@@ -21,7 +21,7 @@ namespace IGTManagementTicket.Api.Controllers
         }
         // GET: api/<TicketsController>
         [HttpGet("{jobId}/{environment}")]
-        public ActionResult<IEnumerable<Items>> TicketCount(int jobId, string environment)
+        public ActionResult<IEnumerable<TicketsInfo>> TicketCount(int jobId, string environment)
         {
             try
             {

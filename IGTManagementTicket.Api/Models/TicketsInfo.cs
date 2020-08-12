@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace IGTManagementTicket.Api.Models
 {
-    public class Items
+    public class TicketsInfo
     {
-        public int TicketCount { get; set; }
-        public int BookCount { get; set; }
+        public int Tickets { get; set; }
+        public int Books { get; set; }
         public string ErrorMessage { get; set; }
     }
 }
