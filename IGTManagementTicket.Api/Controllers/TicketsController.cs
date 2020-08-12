@@ -40,12 +40,12 @@ namespace IGTManagementTicket.Api.Controllers
             }
         }
 
-        // POST api/<TicketsController>
-        public ActionResult<Payload> CreateDB(Payload payload)
+        [HttpGet("{jobId}/{environment}")]
+        public ActionResult<Payload> CreateDB(int jobId, string environment)
         {
             try
             {
-                var result = TicketsService.CreateDB(payload.JobId, payload.Environment);
+                var result = TicketsService.CreateDB(jobId, environment);
 
                 return NoContent();
             }
@@ -55,7 +55,7 @@ namespace IGTManagementTicket.Api.Controllers
             }
         }
 
-        [HttpDelete("{jobId}/{environment}")]
+        [HttpGet("{jobId}/{environment}")]
         public IActionResult DeleteDB(int jobId, string environment)
         {
             try
