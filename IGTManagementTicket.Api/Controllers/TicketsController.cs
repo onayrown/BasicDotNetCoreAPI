@@ -10,22 +10,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IGTManagementTicket.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[action]")]
     [ApiController]
     public class TicketsController : ControllerBase
     {
         [HttpGet]
-        public string Get()
+        public string HealthCheck()
         {
             return "I am UP and Running";
         }
         // GET: api/<TicketsController>
-        [HttpGet("{job}/{environment}")]
-        public ActionResult<IEnumerable<Items>> GetTicketCounts(int job, string environment)
+        [HttpGet("{jobId}/{environment}")]
+        public ActionResult<IEnumerable<Items>> TicketCount(int jobId, string environment)
         {
             try
             {
-                var items = TicketsService.GetTicketCount(job, environment);
+                var items = TicketsService.GetTicketCount(jobId, environment);
 
                 if (items == null)
                 {
@@ -45,7 +45,7 @@ namespace IGTManagementTicket.Api.Controllers
         {
             try
             {
-                var result = TicketsService.CreateDB(payload.Job, payload.Environment);
+                var result = TicketsService.CreateDB(payload.JobId, payload.Environment);
 
                 return NoContent();
             }
@@ -55,19 +55,19 @@ namespace IGTManagementTicket.Api.Controllers
             }
         }
 
-        [HttpDelete("{job}/{environment}")]
-        public IActionResult DeleteDB(int job, string environment)
+        [HttpDelete("{jobId}/{environment}")]
+        public IActionResult DeleteDB(int jobId, string environment)
         {
             try
             {
-                var result = TicketsService.GetPayloadByJob(job, environment);
+                var result = TicketsService.GetPayloadByJob(jobId, environment);
 
                 if (result == null)
                 {
                     return NotFound();
                 }
 
-                TicketsService.DeleteDB(job, environment);
+                TicketsService.DeleteDB(jobId, environment);
 
                 return NoContent();
             }

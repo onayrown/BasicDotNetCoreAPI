@@ -8,7 +8,7 @@ namespace IGTManagementTicket.Api.Services
 {
     public static class TicketsService
     {
-        public static Items GetTicketCount(int job, string environment)
+        public static Items GetTicketCount(int jobId, string environment)
         {
             var items = new Items()
             {
@@ -17,7 +17,7 @@ namespace IGTManagementTicket.Api.Services
                 ErrorMessage = null
             };
 
-            if (job == 1 && environment.ToLower().Equals("usa"))
+            if (jobId == 1 && environment.ToLower().Equals("usa"))
             {
                 return items;
             }
@@ -25,37 +25,37 @@ namespace IGTManagementTicket.Api.Services
             return null;            
         }
 
-        public static Payload CreateDB(int job, string environment)
+        public static Payload CreateDB(int jobId, string environment)
         {
             var payload = new Payload()
             {
-                Job = job,
+                JobId = jobId,
                 Environment = environment
             };
             
             return payload;
         }
 
-        public static Payload DeleteDB(int job, string environment)
+        public static Payload DeleteDB(int jobId, string environment)
         {
             var payload = new Payload()
             {
-                Job = job,
+                JobId = jobId,
                 Environment = environment
             };
 
             return payload;
         }
 
-        public static Payload GetPayloadByJob(int job, string environment)
+        public static Payload GetPayloadByJob(int jobId, string environment)
         {
             var payload = new Payload()
             {
-                Job = job,
+                JobId = jobId,
                 Environment = environment
             };
 
-            if (job == 1 && environment.ToLower().Equals("usa"))
+            if (jobId == 1 && environment.ToLower().Equals("usa"))
             {
                 return payload;
             }

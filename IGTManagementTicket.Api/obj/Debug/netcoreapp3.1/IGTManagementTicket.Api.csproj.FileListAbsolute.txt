@@ -7,7 +7,6 @@ C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\Debug\netcoreapp3.1\IGTManagementTicket.Api.runtimeconfig.dev.json
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\Debug\netcoreapp3.1\IGTManagementTicket.Api.dll
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\Debug\netcoreapp3.1\IGTManagementTicket.Api.pdb
-C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\Debug\netcoreapp3.1\IGTManagementTicket.Api.csprojAssemblyReference.cache
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\Debug\netcoreapp3.1\IGTManagementTicket.Api.AssemblyInfoInputs.cache
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\Debug\netcoreapp3.1\IGTManagementTicket.Api.AssemblyInfo.cs
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\Debug\netcoreapp3.1\IGTManagementTicket.Api.csproj.CoreCompileInputs.cache
@@ -18,3 +17,4 @@ C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\Debug\netcoreapp3.1\IGTManagementTicket.Api.dll
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\Debug\netcoreapp3.1\IGTManagementTicket.Api.pdb
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\Debug\netcoreapp3.1\IGTManagementTicket.Api.genruntimeconfig.cache
+C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\Debug\netcoreapp3.1\IGTManagementTicket.Api.csprojAssemblyReference.cache

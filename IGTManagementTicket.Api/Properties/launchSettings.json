@@ -10,17 +10,17 @@
   },
   "profiles": {
     "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "api/Tickets",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "commandName": "IISExpress",
+        "launchBrowser": true,
+        "launchUrl": "api/HealthCheck",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development"
+        }
     },
     "IGTManagementTicket.Api": {
         "commandName": "Project",
         "launchBrowser": true,
-        "launchUrl": "api/Tickets",
+        "launchUrl": "api/HealthCheck",
         "applicationUrl": "https://localhost:5001;http://localhost:5000",
         "environmentVariables": {
             "ASPNETCORE_ENVIRONMENT": "Development"

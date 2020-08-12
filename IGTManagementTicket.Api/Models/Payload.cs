@@ -7,7 +7,7 @@ namespace IGTManagementTicket.Api.Models
 {
     public class Payload
     {
-        public int Job { get; set; }
+        public int JobId { get; set; }
         public string Environment { get; set; }
     }
 }
