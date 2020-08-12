@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "F4n+npr+/BqkVkziyBWx4DUDHnal6/aLjR0Wuielm+xYxx1PoLxlBl/uvI2sh/JGNuDympPuUJ5Qzkz4eRx3Hg==",
+  "dgSpecHash": "pBS7BdP54CA6sjYuB7eBfGq9XCHHYfG1CphZEy7Q0lzAlfH5RnzsSyfz2oBwTK+XFFz5hVqVT0EBsDbor8mLUA==",
   "success": true,
   "projectFilePath": "C:\\Users\\onayr\\source\\repos\\IGTManagementTicket.Api\\IGTManagementTicket.Api\\IGTManagementTicket.Api.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\onayr\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\onayr\\.nuget\\packages\\microsoft.openapi\\1.1.4\\microsoft.openapi.1.1.4.nupkg.sha512",
+    "C:\\Users\\onayr\\.nuget\\packages\\swashbuckle.aspnetcore\\5.5.1\\swashbuckle.aspnetcore.5.5.1.nupkg.sha512",
+    "C:\\Users\\onayr\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.5.1\\swashbuckle.aspnetcore.swagger.5.5.1.nupkg.sha512",
+    "C:\\Users\\onayr\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.5.1\\swashbuckle.aspnetcore.swaggergen.5.5.1.nupkg.sha512",
+    "C:\\Users\\onayr\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.5.1\\swashbuckle.aspnetcore.swaggerui.5.5.1.nupkg.sha512"
+  ],
   "logs": []
 }
