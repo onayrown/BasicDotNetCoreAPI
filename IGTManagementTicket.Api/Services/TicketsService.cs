@@ -17,7 +17,7 @@ namespace IGTManagementTicket.Api.Services
                 ErrorMessage = null
             };
 
-            if (jobId == 1 && environment.ToLower().Equals("usa"))
+            if (jobId == 9753 && environment.ToUpper().Equals("STAG"))
             {
                 return items;
             }
@@ -25,40 +25,40 @@ namespace IGTManagementTicket.Api.Services
             return null;            
         }
 
-        public static Payload CreateDB(int jobId, string environment)
+        public static StatusDB CreateDB(int jobId, string environment)
         {
-            var payload = new Payload()
+            var statusDB = new StatusDB()
             {
                 JobId = jobId,
                 Environment = environment
             };
             
-            return payload;
+            return statusDB;
         }
 
-        public static Payload DeleteDB(int jobId, string environment)
+        public static StatusDB DeleteDB(int jobId, string environment)
         {
-            var payload = new Payload()
+            var statusDB = new StatusDB()
             {
                 JobId = jobId,
                 Environment = environment
             };
 
-            return payload;
+            return statusDB;
         }
 
-        public static Payload GetPayloadByJob(int jobId, string environment)
+        public static StatusDB GetStatusDBByJob(int jobId, string environment)
         {
-            var payload = new Payload()
+            var statusDB = new StatusDB()
             {
                 JobId = jobId,
-                Environment = environment
+                Environment = environment.ToUpper()
             };
 
-            if (jobId == 1 && environment.ToLower().Equals("usa"))
+            if (jobId == 9753 && environment.ToUpper().Equals("STAG"))
             {
-                return payload;
-            }
+                return statusDB;
+            }            
 
             return null;
         }

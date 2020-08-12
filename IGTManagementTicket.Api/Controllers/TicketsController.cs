@@ -41,13 +41,13 @@ namespace IGTManagementTicket.Api.Controllers
         }
 
         [HttpGet("{jobId}/{environment}")]
-        public ActionResult<Payload> CreateDB(int jobId, string environment)
+        public ActionResult<StatusDB> CreateDB(int jobId, string environment)
         {
             try
             {
                 var result = TicketsService.CreateDB(jobId, environment);
 
-                return NoContent();
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace IGTManagementTicket.Api.Controllers
         {
             try
             {
-                var result = TicketsService.GetPayloadByJob(jobId, environment);
+                var result = TicketsService.GetStatusDBByJob(jobId, environment);
 
                 if (result == null)
                 {
@@ -69,7 +69,7 @@ namespace IGTManagementTicket.Api.Controllers
 
                 TicketsService.DeleteDB(jobId, environment);
 
-                return NoContent();
+                return Ok(result);
             }
             catch (Exception ex)
             {
