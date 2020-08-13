@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IGTManagementTicket.Api.Interfaces.Service;
 using IGTManagementTicket.Api.Models;
+using IGTManagementTicket.Api.Repository.Enums;
 using IGTManagementTicket.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +16,13 @@ namespace IGTManagementTicket.Api.Controllers
     [ApiController]
     public class TicketsController : ControllerBase
     {
+        private readonly ITicketsService _ticketsService;
+
+        public TicketsController(ITicketsService ticketsService)
+        {
+            _ticketsService = ticketsService;
+        }
+
         [HttpGet]
         public string HealthCheck()
         {
@@ -25,7 +34,14 @@ namespace IGTManagementTicket.Api.Controllers
         {
             try
             {
-                var items = TicketsService.GetTicketCount(jobId, environment);
+                var environmentType = _ticketsService.GetEnvironmentType(environment);
+
+                if (environmentType == EnvironmentType.Unknow)
+                {
+                    return NotFound();
+                }
+
+                var items = _ticketsService.DatabaseExists(jobId, environmentType);
 
                 if (items == null)
                 {
@@ -45,7 +61,14 @@ namespace IGTManagementTicket.Api.Controllers
         {
             try
             {
-                var result = TicketsService.CreateDB(jobId, environment);
+                var environmentType = _ticketsService.GetEnvironmentType(environment);
+
+                if (environmentType == EnvironmentType.Unknow)
+                {
+                    return NotFound();
+                }
+
+                var result = _ticketsService.DatabaseCreate(jobId, environmentType);
 
                 return Ok(result);
             }
@@ -60,14 +83,36 @@ namespace IGTManagementTicket.Api.Controllers
         {
             try
             {
-                var result = TicketsService.GetStatusDBByJob(jobId, environment);
+                var environmentType = _ticketsService.GetEnvironmentType(environment);
 
-                if (result == null)
+                if (environmentType == EnvironmentType.Unknow)
                 {
                     return NotFound();
                 }
 
-                TicketsService.DeleteDB(jobId, environment);
+                var result = _ticketsService.DatabaseDelete(jobId, environmentType);                
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
+        }
+
+        [HttpGet("{jobId}/{environment}")]
+        public IActionResult ClearDB(int jobId, string environment)
+        {
+            try
+            {
+                var environmentType = _ticketsService.GetEnvironmentType(environment);
+
+                if (environmentType == EnvironmentType.Unknow)
+                {
+                    return NotFound();
+                }
+
+                var result = _ticketsService.DatabaseClear(jobId, environmentType);
 
                 return Ok(result);
             }

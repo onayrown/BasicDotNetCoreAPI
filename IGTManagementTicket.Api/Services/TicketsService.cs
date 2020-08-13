@@ -1,4 +1,7 @@
-﻿using IGTManagementTicket.Api.Models;
+﻿using IGTManagementTicket.Api.Interfaces.Repository;
+using IGTManagementTicket.Api.Interfaces.Service;
+using IGTManagementTicket.Api.Models;
+using IGTManagementTicket.Api.Repository.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,58 +9,51 @@ using System.Threading.Tasks;
 
 namespace IGTManagementTicket.Api.Services
 {
-    public static class TicketsService
+    public class TicketsService : ITicketsService
     {
-        public static TicketsInfo GetTicketCount(int jobId, string environment)
-        {
-            var items = new TicketsInfo()
-            {
-                Tickets = 5,
-                Books = 3,
-                ErrorMessage = null
-            };
+        private readonly IStatusDBRepository _statusDBRepository;
+        private readonly ITicketsInfoRepository _ticketsInfoRepository;
 
-            if (jobId == 9753 && environment.ToUpper().Equals("STAG"))
+        public TicketsService(IStatusDBRepository statusDBRepository, 
+            ITicketsInfoRepository ticketsInfoRepository)
+        {
+            _statusDBRepository = statusDBRepository;
+            _ticketsInfoRepository = ticketsInfoRepository;
+        }
+
+        public EnvironmentType GetEnvironmentType(string environment)
+        {
+            switch (environment)
             {
-                return items;
+                case "CONF":
+                    return EnvironmentType.Config;
+                case "STAG":
+                    return EnvironmentType.Staging;
+                case "PROD":
+                    return EnvironmentType.Prod;
+                default:
+                    return EnvironmentType.Unknow; 
             }
-
-            return null;            
         }
 
-        public static StatusDB CreateDB(int jobId, string environment)
+        public TicketsInfo DatabaseExists(int jobId, EnvironmentType environment)
         {
-            var statusDB = new StatusDB()
-            {
-                ErrorMessage = null
-            };
-            
-            return statusDB;
+            return _ticketsInfoRepository.DatabaseExists(jobId, environment);
         }
 
-        public static StatusDB DeleteDB(int jobId, string environment)
+        public StatusDB DatabaseCreate(int jobId, EnvironmentType environment)
         {
-            var statusDB = new StatusDB()
-            {
-                ErrorMessage = null
-            };
-
-            return statusDB;
+            return _statusDBRepository.DatabaseCreate(jobId, environment);
         }
 
-        public static StatusDB GetStatusDBByJob(int jobId, string environment)
+        public StatusDB DatabaseDelete(int jobId, EnvironmentType environment)
         {
-            var statusDB = new StatusDB()
-            {
-                ErrorMessage = null
-            };
+            return _statusDBRepository.DatabaseDelete(jobId, environment);
+        }
 
-            if (jobId == 9753 && environment.ToUpper().Equals("STAG"))
-            {
-                return statusDB;
-            }            
-
-            return null;
+        public StatusDB DatabaseClear(int jobId, EnvironmentType environment)
+        {
+            return _statusDBRepository.DatabaseClear(jobId, environment);
         }
     }
 }

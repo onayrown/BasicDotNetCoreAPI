@@ -21,6 +21,12 @@ C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\Debug\netcoreapp3.1\IGTManagementTicket.Api.csproj.CopyComplete
+C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\Debug\netcoreapp3.1\IGTManagementTicket.Api.csproj.CoreCompileInputs.cache
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\Debug\netcoreapp3.1\IGTManagementTicket.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\onayr\source\repos\IGTManagementTicket.Api\IGTManagementTicket.Api\obj\Debug\netcoreapp3.1\IGTManagementTicket.Api.MvcApplicationPartsAssemblyInfo.cache
