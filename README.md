@@ -5,11 +5,13 @@
 - GET   https://localhost:44394/api/TicketCount/JobID/Env
 - GET   https://localhost:44394/api/CreateDB/JobID/Env
 - GET   https://localhost:44394/api/DeleteDB/JobID/Env
+- GET   https://localhost:44394/api/ClearDB/JobID/Env
          
 ## Here is the list with some examples:
 - GET   https://localhost:44394/api/TicketCount/9753/STAG
 - GET   https://localhost:44394/api/CreateDB/9753/STAG
-- GET   https://localhost:44394/api/CreateDB/9753/STAG
+- GET   https://localhost:44394/api/DeleteDB/9753/STAG
+- GET   https://localhost:44394/api/ClearDB/9753/STAG
 
 ## Swagger was added as the default launchUrl, follow the link below:
 
