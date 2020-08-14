@@ -19,7 +19,7 @@ namespace IGTManagementTicket.Api.Repository
             var statusDB = new StatusDB();
             var dt = new DataTable();
 
-            string connection = ConnectionStringName(jobId, environment);
+            string connection = GetConnectionStringName(jobId, environment);
 
             using (var conn = new SqlConnection(connection))
             {
@@ -35,7 +35,7 @@ namespace IGTManagementTicket.Api.Repository
             }
 
             FileInfo fi = new FileInfo(GetScriptFullpath(SCRIPT_CREATE_DATABASE));
-            string dbName = DbName(jobId, environment);
+            string dbName = GetDbName(jobId, environment);
             string script = fi.OpenText().ReadToEnd()
                 .Replace(STR_TAG_DBNAME, dbName)
                 .Replace(STR_TAG_PATH_MDF, (string)dt.Rows[0][dt.Columns["DefaultFile"].Ordinal])
@@ -58,7 +58,7 @@ namespace IGTManagementTicket.Api.Repository
             var statusDB = new StatusDB();
 
             FileInfo fi = new FileInfo(GetScriptFullpath($"{SCRIPT_DELETE_DATABASE}"));
-            string dbName = DbName(jobId, environment);
+            string dbName = GetDbName(jobId, environment);
             string script = fi.OpenText().ReadToEnd().Replace(STR_TAG_DBNAME, dbName);
 
             try
@@ -76,10 +76,11 @@ namespace IGTManagementTicket.Api.Repository
         public StatusDB DatabaseClear(int jobId, EnvironmentType environment)
         {
             var statusDB = new StatusDB();
+            string dbName = GetDbName(jobId, environment);
 
             try
             {
-                string connection = ConnectionStringName(jobId, environment);
+                string connection = GetConnectionStringName(jobId, environment, dbName);
 
                 using (var conn = new SqlConnection(connection))
                 {

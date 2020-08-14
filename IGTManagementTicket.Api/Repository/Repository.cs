@@ -4,6 +4,7 @@ using IGTManagementTicket.Api.Repository.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -23,9 +24,9 @@ namespace IGTManagementTicket.Api.Repository
         public const string STR_DATABASE_BASENAME = "IGT.Gaming";
         public const string SCRIPT_CREATE_DATABASE = "CreateDB";
         public const string SCRIPT_DELETE_DATABASE = "DropDB";
-        public const string STR_CONN_CONF = "Data Source=localhost;Initial Catalog=IGT.Gaming.Model; User Id=sa;Password=wildcats@33;Connection Timeout=120;";
-        public const string STR_CONN_STAG = "Data Source=localhost;Initial Catalog=IGT.Gaming.Model; User Id=sa;Password=wildcats@33;Connection Timeout=120;";
-        public const string STR_CONN_PROD = "Data Source=localhost;Initial Catalog=IGT.Gaming.Model; User Id=sa;Password=wildcats@33;Connection Timeout=120;";
+        public const string STR_CONN_CONF = "Data Source=localhost;Initial Catalog=master; User Id=sa;Password=wildcats@33;Connection Timeout=120;";
+        public const string STR_CONN_STAG = "Data Source=localhost;Initial Catalog=master; User Id=sa;Password=wildcats@33;Connection Timeout=120;";
+        public const string STR_CONN_PROD = "Data Source=localhost;Initial Catalog=master; User Id=sa;Password=wildcats@33;Connection Timeout=120;";
 
         #endregion
 
@@ -47,22 +48,22 @@ namespace IGTManagementTicket.Api.Repository
             GC.SuppressFinalize(this);
         }
 
-        public string ConnectionStringName(int jobId, EnvironmentType environment)
+        public string GetConnectionStringName(int jobId, EnvironmentType environment, string dbName=null)
         {
             switch (environment)
             {
                 case EnvironmentType.Config:
-                    return STR_CONN_CONF;
+                    return dbName == null ? STR_CONN_CONF : STR_CONN_CONF.Replace("master", dbName);
                 case EnvironmentType.Staging:
-                    return STR_CONN_STAG;
+                    return dbName == null ? STR_CONN_STAG : STR_CONN_STAG.Replace("master", dbName);
                 case EnvironmentType.Prod:
-                    return STR_CONN_PROD;
+                    return dbName == null ? STR_CONN_PROD : STR_CONN_PROD.Replace("master", dbName);
                 default:
                     return string.Empty;
             }
         }
 
-        public string DbName(int jobId, EnvironmentType environment)
+        public string GetDbName(int jobId, EnvironmentType environment)
         {
             switch (environment)
             {
@@ -79,12 +80,11 @@ namespace IGTManagementTicket.Api.Repository
         {
             try
             {
-                string connection = ConnectionStringName(jobId, environment);
+                string connection = GetConnectionStringName(jobId, environment);
 
                 using (var conn = new SqlConnection(connection))
                 {
                     conn.Open();
-                    //transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
 
                     using (var command = new SqlCommand(script, conn))
                     {
@@ -93,15 +93,12 @@ namespace IGTManagementTicket.Api.Repository
                             command.CommandText = s.Trim();
                             command.ExecuteNonQuery();
                         }
-
-                        //transaction.Commit();
                     }
                     conn.Close();
                 }
             }
             catch (SqlException ex)
             {
-                //transaction.Rollback();
                 throw new Exception(ex.Message);
             }
         }

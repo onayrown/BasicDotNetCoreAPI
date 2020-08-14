@@ -17,11 +17,12 @@ namespace IGTManagementTicket.Api.Repository
         {
             var ticketsInfo = new TicketsInfo();
             var dt = new DataTable();
-            string dbName = DbName(jobId, environment);
+            string dbName = GetDbName(jobId, environment);
+            string connection = GetConnectionStringName(jobId, environment, dbName);
 
             try
             {
-                using (var conn = new SqlConnection(STR_CONN_STAG))
+                using (var conn = new SqlConnection(connection))
                 {
                     conn.Open();  
 
@@ -64,7 +65,7 @@ namespace IGTManagementTicket.Api.Repository
             }
             catch (SqlException ex)
             {
-                ticketsInfo.ErrorMessage = ex.Message;
+                ticketsInfo.ErrorMessage = $"Database for job: {jobId} probably does not exist. " + ex.Message;
             }
 
             dt.Dispose();
