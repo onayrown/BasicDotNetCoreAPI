@@ -35,17 +35,21 @@ namespace IGTManagementTicket.Api.Repository
                             using (var command2 = new SqlCommand("SELECT cast(SUM(st.row_count) as int) FROM sys.dm_db_partition_stats st WHERE object_name(object_id) = 'TicketInstanceJob' AND (index_id < 2)", conn))
                             {
                                 reader = command2.ExecuteReader();
+                                dt.Clear();
                                 dt.Load(reader);
 
                                 if (dt.Rows.Count > 0)
-                                    ticketsInfo.Tickets = (int)dt.Rows[0][0];
+                                    if (dt.Rows[0][0] != DBNull.Value)
+                                        ticketsInfo.Tickets = (int)dt.Rows[0][0];
 
                                 var command3 = new SqlCommand("select sum(Books) from BookCounts", conn);
                                 reader = command3.ExecuteReader();
+                                dt.Clear();
                                 dt.Load(reader);
 
                                 if (dt.Rows.Count > 0)
-                                    ticketsInfo.Books = (int)dt.Rows[0][0];
+                                    if (dt.Rows[0][0] != DBNull.Value)
+                                        ticketsInfo.Books = (int)dt.Rows[0][0];
                             }
                         }
                         else

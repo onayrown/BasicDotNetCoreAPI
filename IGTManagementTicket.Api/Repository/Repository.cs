@@ -33,7 +33,7 @@ namespace IGTManagementTicket.Api.Repository
 
         public Guid InstanceID { get; set; } = Guid.NewGuid();
 
-        private SqlTransaction transaction;
+        //private SqlTransaction transaction;
         #endregion
 
         #region Constructors
@@ -44,7 +44,7 @@ namespace IGTManagementTicket.Api.Repository
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            GC.SuppressFinalize(this);
         }
 
         public string ConnectionStringName(int jobId, EnvironmentType environment)
@@ -84,9 +84,9 @@ namespace IGTManagementTicket.Api.Repository
                 using (var conn = new SqlConnection(connection))
                 {
                     conn.Open();
-                    transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                    //transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
 
-                    using (var command = new SqlCommand(script, conn, transaction))
+                    using (var command = new SqlCommand(script, conn))
                     {
                         foreach (string s in script.Split(new string[] { "\r\nGO\r\n" }, StringSplitOptions.RemoveEmptyEntries))
                         {
@@ -94,14 +94,14 @@ namespace IGTManagementTicket.Api.Repository
                             command.ExecuteNonQuery();
                         }
 
-                        transaction.Commit();
+                        //transaction.Commit();
                     }
                     conn.Close();
                 }
             }
             catch (SqlException ex)
             {
-                transaction.Rollback();
+                //transaction.Rollback();
                 throw new Exception(ex.Message);
             }
         }
@@ -111,7 +111,7 @@ namespace IGTManagementTicket.Api.Repository
             DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory());
             DirectoryInfo root = di.Parent.Parent.Parent.Parent;
 
-            return Path.Combine(root.FullName, $"IGT.nTier\\IGT.nTier.Gaming.API.Lib\\Scripts\\{name}.sql");
+            return Path.Combine(root.FullName, $"D:\\Data\\SQL\\DEV\\{name}.sql");
         }
 
         public void SetJobAndEnvironment(SettingsDB settings)

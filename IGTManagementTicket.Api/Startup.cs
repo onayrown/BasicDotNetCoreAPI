@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IGTManagementTicket.Api.Interfaces.Repository;
+using IGTManagementTicket.Api.Interfaces.Service;
+using IGTManagementTicket.Api.Repository;
+using IGTManagementTicket.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +29,9 @@ namespace IGTManagementTicket.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IStatusDBRepository, StatusDBRepository>();
+            services.AddTransient<ITicketsInfoRepository, TicketsInfoRepository>();
+            services.AddTransient<ITicketsService, TicketsService>();
             services.AddControllers();
             services.AddSwaggerGen(options =>
             {
